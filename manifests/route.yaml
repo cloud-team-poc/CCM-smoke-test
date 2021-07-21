@@ -1,0 +1,14 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: smoke-test
+  namespace: ccm-smoke-test
+  labels:
+    ccm-smoke-test: 'nginx'
+spec:
+  to:
+    kind: Service
+    name: smoke-test
+  port:
+    targetPort: 8080
+

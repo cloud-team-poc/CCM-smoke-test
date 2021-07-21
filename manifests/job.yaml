@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: smoke-test-set-page
+  namespace: ccm-smoke-test
+  labels:
+    ccm-smoke-test: 'nginx'
+spec:
+  template:
+    metadata:
+      name: smoke-test-set-page
+    spec:
+      volumes:
+        - name: smoke-test-pvc
+          persistentVolumeClaim:
+            claimName: smoke-test-pvc
+      containers:
+        - name: smoke-test-set-page
+          image: ubi8/ubi-minimal
+          command: ["/bin/sh","-c"]
+          args: ['echo "<h1>Hello CCM developer!</h1>" > app/index.html']
+          volumeMounts:
+            - name: smoke-test-pvc
+              mountPath: /app
+      restartPolicy: Never

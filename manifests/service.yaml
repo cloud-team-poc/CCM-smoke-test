@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: smoke-test
+  namespace: ccm-smoke-test
+  labels:
+    app: nginx
+    ccm-smoke-test: 'nginx'
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  selector:
+    app: nginx
+  type: ClusterIP

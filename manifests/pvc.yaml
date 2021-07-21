@@ -1,0 +1,15 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: smoke-test-pvc
+  namespace: ccm-smoke-test
+  labels:
+    ccm-smoke-test: 'nginx'
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Mi
+  volumeMode: Filesystem
+
